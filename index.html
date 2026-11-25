@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>REPORT-UNUSUALLY</title>
+    
+    <!-- Favicon Standar & Android -->
+    <link rel="icon" href="https://pdftourl.net/images/1795338011001-78b16720-f38f-450a-8a33-3264f4a2eabc.png" type="image/png">
+    
+    <!-- Konfigurasi Khusus iPhone / iOS (Safari) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="REPORT-UNUSUALLY">
+    <link rel="apple-touch-icon" href="https://pdftourl.net/images/1795338011001-78b16720-f38f-450a-8a33-3264f4a2eabc.png">
+
+    <!-- Konfigurasi Warna Tema Browser Android -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Placeholder Manifest PWA (Diisi otomatis oleh script di bawah) -->
+    <link rel="manifest" id="pwa-manifest">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #eee;
+            overflow: hidden;
+            /* Mencegah efek pull-to-refresh bawaan browser saat jadi aplikasi */
+            overscroll-behavior-y: contain; 
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <iframe
+            id="app"
+            src="https://script.google.com/macros/s/AKfycbw7xaA3TSI5LQJDW3ZaCmwmBiKLggBdduq6Ra8mrpLTZbSffc5gEjP56d-d9ZpkQbED9g/exec"
+            allow="fullscreen; camera; microphone; display-capture; geolocation">
+        </iframe>
+    </div>
+
+    <script>
+        // Membuat Web App Manifest secara dinamis agar tidak butuh file manifest.json terpisah
+        const manifestData = {
+            "name": "REPORT-UNUSUALLY",
+            "short_name": "REPORT",
+            "start_url": window.location.href,
+            "display": "standalone",
+            "background_color": "#eeeeee",
+            "theme_color": "#ffffff",
+            "icons": [
+                {
+                    "src": "https://pdftourl.net/images/1795338011001-78b16720-f38f-450a-8a33-3264f4a2eabc.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": "https://pdftourl.net/images/1795338011001-78b16720-f38f-450a-8a33-3264f4a2eabc.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ]
+        };
+
+        const stringManifest = JSON.stringify(manifestData);
+        const blob = new Blob([stringManifest], {type: 'application/json'});
+        const manifestURL = URL.createObjectURL(blob);
+        document.querySelector('#pwa-manifest').setAttribute('href', manifestURL);
+    </script>
+</body>
+</html>
